@@ -61,7 +61,7 @@ function gameDraw() {
   
 function snakeInitialize() {
   snake = [];
-  snakeLength = 5;
+  snakeLength = 200;
   snakeSize = 21;
   snakeDirection = "down";
 
@@ -90,7 +90,12 @@ function snakeUpdate() {
     else if(snakeDirection == "right") {
        snakeHeadX++;
     }
-  
+    if(snakeDirection == "left") {
+       snakeHeadX--;
+    }
+    else if(snakeDirection == "up") {
+       snakeHeadY--;
+    }
     var snakeTail = snake.pop();
     snakeTail.x = snakeHeadX;
     snakeTail.y = snakeHeadY;
@@ -136,5 +141,11 @@ function keyboardHandler(event) {
    }
    else if (event.keyCode == "40" && snakeDirection != "up") {
        snakeDirection = "down";
+   }
+   if(event.keyCode == "37" && snakeDirection != "right") {
+       snakeDirection = "left";
+   }
+   else if (event.keyCode == "38" && snakeDirection != "down") {
+       snakeDirection = "up";
    }
 }
